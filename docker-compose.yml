@@ -10,7 +10,6 @@ services:
       - ./docker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
     links:
       - fpm
-      - varnish
 
   fpm:
     build: docker/php-fpm/
@@ -36,3 +35,7 @@ services:
 
   varnish:
     build: docker/varnish/
+    links:
+      - nginx
+    ports:
+      - 8087:8087
